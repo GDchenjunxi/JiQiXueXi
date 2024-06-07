@@ -1,6 +1,6 @@
-# -
+# 运行说明
 大学三年级上册做的阿里云天池街景
-做初步说明，目前有反馈说无法直接运行，据此在这说明一下，在tianchi文件夹内的images文件夹内本应有图片，分别对应着外面那几个mchar_test,mchar_train,mchar_val，
+做初步说明，目前有反馈说无法直接运行，据此在这说明一下，在tianchi文件夹内的images文件夹内本应有图片，上传受限，试过很多次都不行，分别对应着外面那几个mchar_test,mchar_train,mchar_val，把它复制粘贴到这images里面三个文件夹就好了
 数据集分配问题解决了之后我们要修改coco.yaml,models文件夹下面yolov5s.yaml文件的东西，
 coco.yaml里面存放的是train.txt,和val.txt的存放路径，以及类别数量nc，和类别名字name要改成你个标签对应地一个字典：也就是我们刚刚代码生成的文件路径， yolov5s.yaml改一下类别就可以了，改成你自己的类别数量。基本上没有需要改的了，我们直接打开train.py看看：直接划到最下面参数部分，代码里面的data，从data里面的coco.yaml读取train.txt（训练集的地址），train.txt就是存放的图片路径这样就可以读取到图片，标签的话自动定位到对应到labels文件的标签，weights就是预训练模型，epoch训练的轮数，我一般设置的是200，300，batch_size是多少张图片打包，如果电脑不好就是1，2，8，16，32，64，32应该是效果最佳，device:设置为0，workers:代表启动的线程数，如果电脑不好就设置为0，表示主线程。
 在tianchi文件夹下那几个yaml都是这个街景我用过的，就是在原本coco.yaml基础上改到的。
